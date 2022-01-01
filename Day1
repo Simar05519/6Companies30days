@@ -1,0 +1,62 @@
+**Question-1-Goldman Sachs**
+
+class Solution{
+  public:
+    vector<vector<string> > Anagrams(vector<string>& string_list) {
+        //code here
+         unordered_map<string, vector<string>> m;
+        vector<vector<string>> res;
+        
+        for(int i=0; i<string_list.size(); i++){
+            string temp = string_list[i];
+            sort(temp.begin(), temp.end()); //to know whether current element is anagram or not
+            m[temp].push_back(string_list[i]);
+        }
+        
+        unordered_map<string, vector<string>>::iterator itr = m.begin();
+        
+        for(; itr!=m.end(); itr++){
+            res.push_back(itr->second); 
+        }
+        
+        return res;
+    }
+};
+
+
+
+**Question-2-Goldman Sachs**
+
+class Solution {
+  public:
+    int doOverlap(int L1[], int R1[], int L2[], int R2[]) {
+        // code here
+         if(L1[0]>R2[0]||L2[0]>R1[0])
+           return 0;
+       if(R1[1]>L2[1]||R2[1]>L1[1])
+           return 0;
+       return 1;
+    }
+};
+
+
+
+**Question-3-Goldman Sachs**
+
+class Solution{
+  public:
+    int countSubArrayProductLessThanK(const vector<int>& a, int n, long long k) {
+       if (k <= 1) return 0;
+        long long int l=0,c=0;
+        long long int pro=1;
+        for(int i=0;i<n;i++)
+        {
+            pro*=a[i];
+           while (pro>= k) {
+                pro/= a[l++];
+            }
+            c+= i - l+ 1;
+        }
+        return c; 
+    }
+};
