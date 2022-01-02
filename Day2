@@ -1,0 +1,65 @@
+#Question-4-Goldman Sachs
+
+string encode(string src)
+{     
+  //Your code here 
+   int c=1;
+    string res="";
+    res+=src[0];
+    for(int i=1;i<src.size();i++){
+        if(src[i]==src[i-1])
+            c++;
+        else{
+            res+=c+'0';         
+            res+=src[i];
+            c=1;
+        }
+    }
+    res+=to_string(c);
+    return res;
+} 
+
+
+
+#Question-5-Goldman Sachs
+
+class Solution{
+public:	
+	// #define ull unsigned long long
+	/* Function to get the nth ugly number*/
+	ull getNthUglyNo(int n) {
+	    // code here
+	    ull dp[n+1]; 
+        dp[1] =1;
+        ull p2 =1, p3 = 1, p5 = 1;
+        for(int i =2; i<= n ; i++){
+            ull f2 =  2* dp[p2]; 
+            ull f3 = 3* dp[p3];
+            ull f5 = 5* dp[p5];
+            ull mini = min(f2, min(f3, f5)); 
+            dp[i] = mini; 
+            if(mini== f2) p2++; 
+            if(mini== f3) p3++;
+            if(mini == f5) p5++;
+         }
+        return dp[n]; 
+	}
+};
+
+
+
+#Question-6-Goldman Sachs
+
+class Solution {
+public:
+   int find_gcd(int a, int b){
+		if(b == 0) return a;
+		return find_gcd(b,a%b);
+	}
+
+	string gcdOfStrings(string str1, string str2) {
+		if(str1 + str2 != str2 + str1) return "";
+		int gcd = find_gcd(str1.length(), str2.length());
+		return str1.substr(0,gcd);
+    }
+};
