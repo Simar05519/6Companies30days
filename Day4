@@ -1,0 +1,33 @@
+#Question-11-Goldman Sachs
+
+class Solution{
+    private:
+int ans[2]={0};
+public:
+    int *findTwoElement(int *arr, int n) {
+        // code here
+        int freq[n+1]={-1};
+     memset(freq,-1,sizeof(freq));
+     for(int i=0;i<n;++i){
+         freq[arr[i]]++;
+     }
+    //for(auto i:freq) cout<<i<<" ";
+        for(int i=1;i<=n;++i){
+            if(freq[i]==-1) ans[1]=i;
+            if(freq[i]==1) ans[0]=i;
+        }
+        return ans;
+    }
+};
+
+
+
+#Question-12-Goldman Sachs
+
+class Solution {
+  public:
+    long long squaresInChessBoard(long long N) {
+        // code here
+        return N*(N+1)*(2*N+1)/6;
+    }
+};
