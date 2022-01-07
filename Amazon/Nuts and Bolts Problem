@@ -1,0 +1,19 @@
+class Solution{
+public:	
+
+	void matchPairs(char nuts[], char bolts[], int n) {
+	    // code here
+	    unordered_map<char,int>m;
+	    for(int i=0;i<n;i++)
+	    {
+	        m[nuts[i]]=i;
+	    }
+	    sort(bolts,bolts+n);
+	    for(int i=0; i<n; i++){
+        if(m.find(bolts[i])!=m.end()){
+            nuts[i]=bolts[i];
+        }
+    }
+	}
+
+};
