@@ -1,0 +1,41 @@
+class Solution
+{
+    public:
+     void traversal(Node* root, vector<int> &res) {
+        if(root==NULL) {
+            res.push_back(-1);
+            return ;
+        }
+            res.push_back(root->data);
+            traversal(root->left, res);
+            traversal(root->right, res);
+     }
+    //Function to serialize a tree and return a list containing nodes of tree.
+    vector<int> serialize(Node *root) 
+    {
+        //Your code here
+        vector<int> res;
+        traversal(root, res);
+        return res; 
+    }
+    
+    Node* deserial(vector<int>&A,int &ind)
+    {
+      if(A[ind]==-1)
+       {
+          ind++;
+         return NULL;
+        }
+      Node* temp=new Node(A[ind]);
+      ind++;
+      temp->left=deserial(A,ind);
+      temp->right=deserial(A,ind);
+      return temp;
+    }
+    //Function to deserialize a list and construct the tree.
+    Node * deSerialize(vector<int> &A)
+    {
+       int ind=0;
+       return deserial(A,ind);
+    }
+};
