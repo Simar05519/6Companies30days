@@ -1,0 +1,36 @@
+  class Solution {
+	public:
+		string FirstNonRepeating(string A){
+		    // Code here
+		    string ans="";
+		    queue<char>q;
+		     unordered_map<char, int> m;
+		     for(int i=0;i<A.size();i++)
+		     {
+		         char c=A[i];
+		          m[c]++;
+		         if(m[c]==1)
+		         {
+		             q.push(c);
+		             ans+=q.front();
+		         }
+		         else
+		         {
+		         while(!q.empty() && m[q.front()]>1)
+		         {
+		             q.pop();
+		         }
+		         if(q.empty())
+		         {
+		             ans+='#';
+		         }
+		         else
+		         {
+		            ans+=q.front();
+		         }
+		         }
+		     }
+		     return ans;
+		    
+		}
+};
