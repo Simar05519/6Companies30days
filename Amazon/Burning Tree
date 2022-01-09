@@ -1,0 +1,78 @@
+class Solution {
+  public:
+  
+  Node*bfs(Node* root,map<Node*,Node*>&m,int target)
+  {
+      queue<Node*>q;
+      q.push(root);
+      Node *ans;
+      while(!q.empty())
+      {
+          Node* node=q.front();
+          q.pop();
+          if(node->data==target)
+          {
+              ans=node;
+          }
+          if(node->left)
+          {
+              m[node->left]=node;
+              q.push(node->left);
+          }
+          if(node->right)
+          {
+              m[node->right]=node;
+              q.push(node->right);
+          }
+      }
+      return ans;
+  }
+  
+  int find_max(map<Node*,Node*>&m, Node* target)
+  {
+      queue<Node*>q;
+      q.push(target);
+      map<Node*, int> vis;
+      vis[target]=1;
+      int maxi=0;
+      while(!q.empty())
+      {
+          int n=q.size();
+          int c=0;
+          for(int i=0;i<n;i++)
+          {
+              auto node = q.front();
+             q.pop();
+             if(node->left && !vis[node->left])
+             {
+                 c=1;
+                 vis[node->left]=1;
+                 q.push(node->left);
+             }
+             if(node->right && !vis[node->right])
+             {
+                 c=1;
+                 vis[node->right]=1;
+                 q.push(node->right);
+             }
+             if(m[node] && !vis[m[node]])
+             {
+                 c=1;
+                 vis[m[node]]=1;
+                  q.push(m[node]);
+             }
+         }
+             if(c!=0) maxi++;
+     }
+               return maxi;
+  }
+  
+    int minTime(Node* root, int target) 
+    {
+        // Your code goes here
+        map<Node*,Node*>m;
+        Node *res=bfs(root,m,target);
+        int maxi=find_max(m,res);
+        return maxi;
+    }
+};
