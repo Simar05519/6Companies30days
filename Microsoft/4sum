@@ -1,0 +1,49 @@
+class Solution {
+public:
+     int next(vector<int>& nums,int i) {
+        int n = nums.size();
+        while (i<n && nums[i]==nums[i-1]) ++i;
+        return i;
+    }
+    
+    int prev(vector<int>& nums,int i) {
+        while (i>=0 && nums[i]==nums[i+1]) --i;
+        return i;
+    }
+    
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        int n = nums.size();
+        vector<vector<int>> res;
+        if (n<4) return res;
+        sort(nums.begin(),nums.end());
+        
+        map<int,int> m;
+        for (int i=0;i<n;++i) m[nums[i]] = i;
+        int a=0;
+        while (a<n) {
+            int b = a+1;
+            while (b<n) {
+                int c = b+1;
+                int d = n-1;
+                int sum = target-(nums[a]+nums[b]);
+                while (c<d) {
+                    if (nums[c]+nums[d]==sum) {
+                        vector<int> sol;
+                        sol.push_back(nums[a]);
+                        sol.push_back(nums[b]);
+                        sol.push_back(nums[c]);
+                        sol.push_back(nums[d]);
+                        res.push_back(sol);
+                        c = next(nums,c+1);
+                        d = prev(nums,d-1);
+                    }
+                    else if (nums[c]+nums[d]>sum) d = prev(nums,d-1);
+                    else c = next(nums,c+1);
+                }
+                b = next(nums,b+1);
+            } 
+            a = next(nums,a+1);
+        }
+        return res;
+    }
+};
