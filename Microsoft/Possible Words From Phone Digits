@@ -1,0 +1,39 @@
+class Solution
+{
+    public:
+    string getstring(int n)
+    {
+        switch(n)
+        {
+            case 2:return "abc";
+            case 3:return "def";
+            case 4:return "ghi";
+            case 5:return "jkl";
+            case 6:return "mno";
+            case 7:return "pqrs";
+            case 8:return "tuv";
+            case 9:return "wxyz";
+        }
+    }
+    void getwrd(int i,int n,int a[],string cur,vector<string>&ans)
+    {
+        if(i==n)
+        {
+            ans.push_back(cur);
+            return;
+        }
+        string s=getstring(a[i]);
+        for(int j=0;j<s.length();j++)
+        {
+            getwrd(i+1,n,a,cur+s[j],ans);
+        }
+    }
+    //Function to find list of all words possible by pressing given numbers.
+    vector<string> possibleWords(int a[], int N)
+    {
+        //Your code here
+        vector<string>ans;
+        getwrd(0,N,a,"",ans);
+        return ans;
+    }
+};
