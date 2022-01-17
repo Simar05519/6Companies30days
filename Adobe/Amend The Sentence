@@ -1,0 +1,19 @@
+class Solution{
+    public:
+    string amendSentence (string s)
+    {
+        // your code here
+        string t="";
+        for(int i=0;i<s.length();i++){
+          if(s[i]>='a'&& s[i]<='z'){
+              t+=s[i];
+          }else {
+              if(i>0){
+                  t+=' ';
+              }
+              t+=tolower(s[i]);
+          }
+        }
+        return t;
+    }
+};
