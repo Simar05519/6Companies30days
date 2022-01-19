@@ -1,0 +1,48 @@
+class Solution {
+  public:
+  int lis(vector<int>A, int N)
+  {
+      if(A.empty())
+      {
+          return 0;
+      }
+      vector<int>res(N,0);
+      int len=1;
+      res[0]=A[0];
+      for(int i=1;i<N;i++)
+      {
+         if(A[i]<res[0]) 
+         {
+             res[0]=A[i];
+         }
+         else if(A[i]>res[len-1])
+         {
+             res[len++]=A[i];
+         }
+         else
+         {
+             int pos=lower_bound(res.begin(),res.begin()+len,A[i])-res.begin();
+             res[pos]=A[i];
+         }
+      }
+      return len;
+  }
+    int minInsAndDel(int A[], int B[], int N, int M) {
+        // code here
+        vector<int>v;
+        unordered_map<int,int>m;
+        for(int i=0;i<M;i++)
+        {
+            m[B[i]]++;
+        }
+        for(int i=0;i<N;i++)
+        {
+            if(m.find(A[i])!=m.end())
+            {
+                v.push_back(A[i]);
+            }
+        }
+        int len=lis(v,v.size());
+        return N+M-2*len;
+    }
+};
