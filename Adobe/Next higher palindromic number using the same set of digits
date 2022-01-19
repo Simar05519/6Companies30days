@@ -1,0 +1,31 @@
+class Solution{
+  public:
+    string nextPalin(string N) { 
+        //complete the function here
+        int n=N.size();
+        if(n<=3)
+        {
+            return "-1";
+        }
+        string ans;
+        int mid=n/2-1;
+        string first_half=N.substr(0,mid+1);
+        string prev=first_half;
+        next_permutation(first_half.begin(),first_half.end());
+        if(first_half<=prev)
+        {
+            return "-1";
+        }
+        else
+        {
+            ans+=first_half;
+        }
+        if(n%2==1)
+        {
+           ans+=N[n/2]; 
+        }
+        reverse(first_half.begin(),first_half.end());
+        ans+=first_half;
+        return ans;
+    }
+};
