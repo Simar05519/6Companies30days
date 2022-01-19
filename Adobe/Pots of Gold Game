@@ -1,0 +1,23 @@
+class Solution {
+public:
+int finds(vector<int>& A, vector<vector<int>>& dp, int i, int j)
+   {
+       if(i>j)
+           return dp[i][j]=0;
+       if(i==j)
+           return dp[i][j]=A[i];
+       if(dp[i][j] != -1)
+           return dp[i][j];
+           
+       int l=A[i] + min(finds(A, dp, i+2, j), finds(A, dp, i+1, j-1));
+       int r=A[j] + min(finds(A, dp, i+1, j-1), finds(A, dp, i,j-2));
+       
+       return dp[i][j]=max(l, r);
+   }
+    int maxCoins(vector<int>&A,int n)
+    {
+	    //Write your code here
+	    vector<vector<int>> dp(n+1, vector<int>(n+1, -1));
+        return finds(A, dp, 0, n-1);
+    }
+};
