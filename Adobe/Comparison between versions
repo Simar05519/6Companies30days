@@ -1,0 +1,41 @@
+int vc(string s1, string s2) 
+{ 
+    int v1 = 0, v2 = 0; 
+ 
+    for (int i = 0, j = 0; (i < s1.length() 
+                            || j < s2.length());) { 
+ 
+        while (i < s1.length() && s1[i] != '.') { 
+            v1 = v1 * 10 + (s1[i] - '0'); 
+            i++; 
+        } 
+
+  
+        while (j < s2.length() && s2[j] != '.') { 
+            v2 = v2 * 10 + (s2[j] - '0'); 
+            j++; 
+        } 
+
+        if (v1 > v2) 
+            return 1; 
+        if (v2 > v1) 
+            return -1; 
+        v1 = v2 = 0; 
+        i++; 
+        j++; 
+    } 
+    return 0; 
+} 
+int main() 
+{ 
+    string v1 = "1.0.3"; 
+    string v2 = "1.0.7"; 
+
+    if (vc(v1, v2) < 0) 
+        cout << v1 << "is small"<<endl; 
+    else if (vc(v1, v2) > 0) 
+        cout << v2 << "is small"<<endl; 
+    else
+        cout << "equal"<<endl; 
+    return 0; 
+} 
