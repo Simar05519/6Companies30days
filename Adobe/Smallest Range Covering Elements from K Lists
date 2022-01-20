@@ -1,0 +1,49 @@
+class Solution {
+public:
+    vector<int> smallestRange(vector<vector<int>>& nums) {
+        int n = nums.size(), s = 0, t = 0;
+        for(int i = 0; i < n; i++)
+            s += nums[i].size();
+        
+		// creating the flattened array with jagged array
+        vector<pair<int, int>> a(s);
+        for(int i = 0; i < n; ++i) {
+            for(int j = 0; j < nums[i].size(); j++) {
+                a[t].first = nums[i][j];
+                a[t].second = i;
+                t++;
+            }
+        }        
+        sort(a.begin(), a.end());
+        
+        vector<int> vis(n, 0);
+        int i = 0, j = 0, rj = INT_MAX, ri = 1, cnt = 0;
+        
+		// sliding window for smallest set of fulfilling set
+        while(i < a.size() && j < a.size()) {
+            if(!vis[a[i].second])
+                cnt++;
+            vis[a[i].second]++;
+            
+			// set containing all elements
+            if(cnt >= n) {
+			// contracting the set
+                while(j < a.size() && cnt >= n) {
+                    if(rj - ri > a[i].first - a[j].first) {
+                        rj = a[i].first;
+                        ri = a[j].first;
+                    }
+                    
+                    vis[a[j].second]--;
+                    if(!vis[a[j].second])
+                        cnt--;
+                    j++;
+                } 
+            }
+            i++;
+        }
+        
+        return vector<int>({ri, rj});
+    }
+
+};
