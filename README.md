@@ -9,3 +9,5 @@ Ques doc **Amazon** : https://docs.google.com/document/d/1KH9GVaUCET-y5SL5sg6DAn
 Ques doc **Microsoft** : https://docs.google.com/document/d/1sSyOTeZBVJExf0oytLVGk6Z34h1usFm4QRkr1Wb5ouk/edit
 
 Ques doc **Adobe** : https://docs.google.com/document/d/1cEAe63fC3YMJRwKmCoVOIXFUaFv5LqNXedxaGpaqd6U/edit
+
+Ques doc **Intuit** : https://docs.google.com/document/d/18oi6OlvcL3wYn20Jb9crW7NO4cGkL6vUfTvplNDGkTw/edit
