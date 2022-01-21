@@ -1,0 +1,29 @@
+class Solution{
+
+  public:
+  int solve(int arr[],int n,int sum,int tot,vector<vector<int>>&dp)
+  {
+      if(n==0)
+      {
+          int t1=tot-sum;
+          return abs(t1-sum);
+      }
+      if(dp[n-1][sum]!=-1)
+      {
+          return dp[n-1][sum];
+      }
+      int a=solve(arr,n-1,sum+arr[n-1],tot,dp);
+      int b=solve(arr,n-1,sum,tot,dp);
+      return dp[n-1][sum]=min(a,b);
+  }
+	int minDifference(int arr[], int n)  { 
+	    // Your code goes here
+	    int tot=0;
+	    for(int i=0;i<n;i++)
+	    {
+	        tot+=arr[i];
+	    }
+	    vector<vector<int>>dp(n,vector<int>(tot+1,-1));
+	    return solve(arr,n,0,tot,dp);
+	} 
+};
