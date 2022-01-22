@@ -1,0 +1,42 @@
+class Solution {
+public:
+    int isPos(vector<int>& piles,int n,int mid, int h)
+    {
+        int time=0;
+        for(int i=0;i<n;i++)
+        {
+            time+=(double)ceil(piles[i]*1.0/mid);
+        }
+        return time<=h;
+    }
+    
+    int minEatingSpeed(vector<int>& piles, int h) {
+        int n=piles.size();
+        int maxi=INT_MIN;
+        for(int i=0;i<n;i++)
+        {
+            maxi=max(maxi,piles[i]);
+        }
+        int l=0;
+        int hi=maxi;
+        int sp=INT_MAX;
+        if(n==h)
+        {
+            return maxi;
+        }
+        while(l<=hi)
+        {
+            int mid=l+(hi-l)/2; //to avoid overflow
+            if(isPos(piles,n,mid,h)==true)
+            {
+                sp=mid;
+                hi=mid-1;
+            }
+            else
+            {
+                l=mid+1;
+            }
+        }
+        return l;
+    }
+};
