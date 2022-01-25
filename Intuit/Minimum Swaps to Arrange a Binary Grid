@@ -1,0 +1,44 @@
+class Solution {
+public:
+    int minSwaps(vector<vector<int>>& grid) {
+        int n=grid.size();
+        int m=grid[0].size();
+        vector<int>v;
+        for(int i=0;i<n;i++)
+        {
+            int c=0;
+            for(int j=m-1;j>=0;j--)
+            {
+                if(grid[i][j]==0)
+                    c++;
+                else
+                {
+                   v.push_back(c);
+                    break;
+                }
+            }
+        }
+        int ans=0;
+     n=v.size();
+        for(int i=0;i<n;i++)
+        {
+            if(v[i]<(n-i-1))
+            {
+                int k=i;
+                while(k<n && v[k]<(n-i-1))
+                {
+                    k++;
+                }
+                if(k==n)
+                return -1;
+                while(k>i)
+            {
+                swap(v[k],v[k-1]);
+                ans++;
+                k--;
+            }
+        }
+ }
+        return ans;
+    }
+};
