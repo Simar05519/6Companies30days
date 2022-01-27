@@ -1,0 +1,25 @@
+class Solution{
+  public:
+    vector<int> find3Numbers(vector<int> arr, int N) {
+        // Your code here
+           int f =INT_MAX;
+            int s = INT_MIN;
+             int l = 0; int r = N-1;
+       while(l < r)
+       {
+           f = min(f,arr[l]);
+           s = max(s, arr[r]);
+           if(s > f)
+           {
+               for (int i =l+1; i <= r-1  ;i++)
+               {
+                   if (arr[i] < s && arr[i] > f)
+                       return {f,arr[i],s};
+               }
+           }
+           l++;
+           r--;
+       }
+       return {};    
+    }
+};
