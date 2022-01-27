@@ -1,0 +1,19 @@
+class Solution
+{
+    public:
+    //Function to find total number of unique paths.
+    int paths(int a,int b,int i,int j,vector<vector<int>>&dp)
+    {
+        if((i>=a) || (j>=b)) return 0;
+        if((i==a-1) && (j==b-1)) return 1;
+        if(dp[i][j]!=-1) return dp[i][j];
+        else
+            return dp[i][j]=paths(a,b,i+1,j,dp)+paths(a,b,i,j+1,dp);
+    }
+    int NumberOfPath(int a, int b)
+    {
+        //code here
+         vector<vector<int>>dp(a+1,vector<int>(b+1,-1));
+        return paths(a,b,0,0,dp);
+    }
+};
