@@ -1,0 +1,17 @@
+class Solution {
+public:
+int display(Node* root) 
+{
+        if (!root) return 0;
+        int l = display(root->left);
+        int r = display(root->right);
+        int tmp = root->data;
+        if (l == 0 && r == 0) root->data = 0;
+        else root->data = l + r;
+        return tmp + l + r;
+}
+    void toSumTree(Node *node)
+    {
+        display(node);
+    }
+};
