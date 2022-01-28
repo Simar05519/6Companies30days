@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int divide(int dividend, int divisor) {
+        bool isNeg = (dividend < 0 && divisor > 0) || (dividend > 0 && divisor < 0) ? true : false;
+        long res=0;
+        long absdivid=abs(dividend);
+        long absdiv=abs(divisor);
+        while (absdivid >= absdiv) {
+            long tmp = absdiv;
+            long count = 1;
+            while (tmp <= absdivid){
+                tmp <<= 1;
+                count <<= 1;
+            }
+            // add the quotient
+            res += count >> 1;
+            // set remainder to dividend
+            absdivid -= tmp >> 1;
+        }
+        return  isNeg ?  ~res + 1 : res > INT_MAX ? INT_MAX :  res;
+    }
+};
