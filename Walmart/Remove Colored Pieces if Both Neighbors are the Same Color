@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool winnerOfGame(string colors) {
+      int n=colors.size();
+        if(n<3)
+        {
+            return false;
+        }
+        int a=0,b=0;
+            for(int i=0;i<n-2;i++)
+        {
+            if(colors[i]=='A' and colors[i+1]=='A' and colors[i+2]=='A')
+                a++;
+            if(colors[i]=='B' and colors[i+1]=='B' and colors[i+2]=='B')
+                b++;
+        }
+        return a>b;
+    }
+};
